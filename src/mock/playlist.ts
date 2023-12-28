@@ -1063,7 +1063,7 @@ https://stmv1.srvif.com/otaku/otaku/playlist.m3u8
 #EXTINF:-1 tvg-logo="https://listaiptv.gratis/logos/imagens/loadingamarelo.png" group-title="Canais | ANIMES & GEEK"",Loading...TV
 https://stmv1.srvif.com/loadingtv/loadingtv/playlist.m3u8
 
-#EXTINF:-1 tvg-logo="https://i.imgur.com/NMMtJ8F.png" group-title="Canais | ANIMES & GEEK"",Geekdot​
+#EXTINF:-1 tvg-logo="https://i.imgur.com/NMMtJ8F.png" group-title="Canais | ANIMES & GEEK"",Geekdot
 https://stream.ichibantv.com:3764/hybrid/play.m3u8
 
 #EXTINF:-1 tvg-logo="https://i.imgur.com/ySKHcBY.png" group-title="Canais | ANIMES & GEEK"",Mylou
@@ -2295,5 +2295,4 @@ http://fhd1.mflixhd.xyz/eretgfvccdsertgf4356tygfre435tygf/FHD3/tt2279864.mp4
 http://fhd5.mflixhd.xyz/tokIadasfIIlIlenIlIlIsf/FHD5/tt0119217.mp4
 
 #EXTINF:-1  tvg-logo="https://imgur.com/L89LBAz.png" group-title="FILMES",Malibu Crush
-http://fhd4.mflixhd.xyz/toktergfer32tgdsvsdven/FHD4/tt3437892.mp4
-`
+http://fhd4.mflixhd.xyz/toktergfer32tgdsvsdven/FHD4/tt3437892.mp4`

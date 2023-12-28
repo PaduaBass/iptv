@@ -1,4 +1,5 @@
 import { PlaylistItem } from 'iptv-playlist-parser'
+import Image from 'next/image'
 
 interface GroupListProps {
   data: PlaylistItem[]
@@ -14,7 +15,12 @@ const GroupList = ({ data, onSelectGroup, isSearch }: GroupListProps) => {
           className="bg-slate-100 p-2 rounded-md h-[100px] hover:border-2 border-slate-800 hover:bg-slate-500 border-2 hover:border-red-600 flex items-center"
           onClick={() => onSelectGroup(item.group.title)}
         >
-          <img alt={item.tvg.name} src={item.tvg.logo} width={50} height={50} />
+          <Image
+            alt={item.tvg.name}
+            src={item.tvg.logo}
+            width={50}
+            height={50}
+          />
           <h2>{item.group.title}</h2>
         </button>
       ))}

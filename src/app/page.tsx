@@ -1,22 +1,19 @@
 'use client'
 import VideoPlayer from '@/components/Video/Video'
-import Image from 'next/image'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import videojs from 'video.js'
+import { useCallback, useState } from 'react'
 import { playlist } from '@/mock/playlist'
 import { PlaylistItem, parse } from 'iptv-playlist-parser'
 import { debounce } from 'lodash'
 import ChannelList from '@/components/ChannelList/ChannelList'
 import GroupList from '@/components/GroupList/GroupList'
 import { ArrowLeft } from 'lucide-react'
-import test from 'node:test'
 
 enum ViewType {
   ALL = 'all',
   GROUP = 'group',
   SELECTED_GROUP = 'selectedGroup',
 }
-export default function Home(props: any) {
+export default function Home() {
   const test = parse(playlist)
   const [src, setSrc] = useState<string | null>(null)
   const [selectedGroup, setSelectedGroup] = useState('')
@@ -30,13 +27,6 @@ export default function Home(props: any) {
     [],
   )
 
-  const handleChange = (query: string) => {
-    setSearchChannel(query)
-    debouncedSave()
-    if (sendFilter) {
-      setSendFilter(false)
-    }
-  }
   const group = test.items.reduce((acc: PlaylistItem[], cv, i) => {
     if (!acc?.find((it) => it.group.title === cv.group.title)) {
       acc.push(cv)
@@ -67,7 +57,6 @@ export default function Home(props: any) {
       item.name.toLocaleLowerCase().startsWith(searchChannel) ||
       item.name.toLocaleLowerCase().includes(searchChannel),
   )
-  console.log(test)
   return (
     <main className="flex h-screen w-screen bg-slate-700 flex-col overflow-y-scroll">
       <header className="absolute bg-slate-800 flex w-screen items-center p-2 justify-between">
