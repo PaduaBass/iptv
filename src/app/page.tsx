@@ -74,7 +74,7 @@ export default function Home() {
           )}
           <select
             onChange={(e) => setViewType(e.target.value)}
-            className=" p-2 rounded-md w-full"
+            className=" p-2 rounded-md w-full "
           >
             <option value={ViewType.ALL}>Todos os Canais</option>
             <option value={ViewType.GROUP}>Grupos</option>
