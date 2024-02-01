@@ -12,11 +12,11 @@ const ChannelList = ({ data, onSelectChannel, isSearch }: ChannelListProps) => {
       {data.map((item, i) => (
         <button
           key={i}
-          className="bg-slate-100 p-2 rounded-md h-[100px] hover:border-2 border-slate-800 hover:bg-slate-500 border-2 hover:border-red-600 flex items-center gap-2"
+          className="bg-[#092635] p-2 rounded-md h-[100px] hover:border-2 border-slate-800 hover:bg-[#005B41] border-2  flex items-center gap-2"
           onClick={() => onSelectChannel(item.url)}
         >
           <img alt={item.tvg.name} src={item.tvg.logo} width={50} height={50} />
-          <h2>{item.name}</h2>
+          <h2 className="text-white">{item.name}</h2>
         </button>
       ))}
       {isSearch && data.length === 0 && (

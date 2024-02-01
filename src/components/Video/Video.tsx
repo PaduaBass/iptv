@@ -34,7 +34,7 @@ export default function VideoPlayer({ src, closeCallback }: VideoPlayerProps) {
         hls.attachMedia(video)
         if (isMp4) {
           video.src = src
-          video.controls = false
+          video.controls = true
         }
       } else {
         console.log('aqui no erro')

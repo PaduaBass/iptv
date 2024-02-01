@@ -8,11 +8,11 @@ interface GroupListProps {
 }
 const GroupList = ({ data, onSelectGroup, isSearch }: GroupListProps) => {
   return (
-    <div className="grid grid-cols-4 gap-2 mt-20 max-sm:grid-cols-2">
+    <div className="grid grid-cols-4 gap-2 mt-16 max-sm:grid-cols-2">
       {data.map((item, i) => (
         <button
           key={i}
-          className="bg-slate-100 p-2 rounded-md h-[100px] hover:border-2 border-slate-800 hover:bg-slate-500 border-2 hover:border-red-600 flex items-center"
+          className="bg-[#092635] p-2 rounded-md h-[100px] hover:border-2 border-slate-800 hover:bg-[#005B41] border-2  flex items-center gap-2"
           onClick={() => onSelectGroup(item.group.title)}
         >
           <Image
@@ -21,7 +21,7 @@ const GroupList = ({ data, onSelectGroup, isSearch }: GroupListProps) => {
             width={50}
             height={50}
           />
-          <h2>{item.group.title}</h2>
+          <h2 className="text-white">{item.group.title}</h2>
         </button>
       ))}
       {isSearch && data.length === 0 && (
