@@ -8,3 +8,13 @@
     outline: 0;
     box-sizing: border-box;
 }
+
+* {
+    scrollbar-width: 0px;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 0px;
+  }
+  

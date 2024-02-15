@@ -7,11 +7,14 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import Logo from '../../assets/tutu tv white.png'
 import { useRouter } from 'next/navigation'
+import { phoneMask } from '@/util/mask'
 const updateUserFormScheme = z.object({
   id: z.string(),
-  name: z.string({
-    required_error: '*Campo obrigatório!',
-  }),
+  name: z
+    .string({
+      required_error: '*Campo obrigatório!',
+    })
+    .min(5, 'Nome não pode ser vazio'),
   email: z
     .string({
       required_error: '*Campo obrigatório!',
@@ -44,6 +47,10 @@ const UpdateUser = () => {
       phone: user.phone,
     },
   })
+
+  const handleUpdateProfile = (data: UpdateUserScheme) => {
+    console.log(data)
+  }
   return (
     <main className="bg-[#0F0F0F] flex w-screen h-screen justify-center items-center">
       <div className="flex flex-col justify-center items-center gap-4 w-[50%] max-sm:w-[80%] bg-zinc-900 p-4 rounded-md">
@@ -57,15 +64,23 @@ const UpdateUser = () => {
             placeholder="Digite seu nome"
             onChange={(e) => setValue('name', e.target.value)}
           />
+          {errors.name && (
+            <span className="text-white text-xs">{errors.name.message}</span>
+          )}
         </div>
         <div className="w-full">
           <label className="text-white text-sm">Telefone</label>
           <input
             value={watch('phone')}
             className="p-2 rounded-md w-full"
+            type="tel"
             placeholder="Digite seu numero de telefone"
-            onChange={(e) => setValue('phone', e.target.value)}
+            onChange={(e) => setValue('phone', phoneMask(e.target.value))}
+            maxLength={15}
           />
+          {errors.phone && (
+            <span className="text-white text-xs">{errors.phone.message}</span>
+          )}
         </div>
         <div className="w-full">
           <label className="text-white text-sm">Email</label>
@@ -75,6 +90,9 @@ const UpdateUser = () => {
             placeholder="Digite seu email"
             onChange={(e) => setValue('email', e.target.value)}
           />
+          {errors.email && (
+            <span className="text-white text-xs">{errors.email.message}</span>
+          )}
         </div>
         <div className="w-full text-sm">
           <label className="text-white">Data de vencimento</label>
@@ -89,6 +107,9 @@ const UpdateUser = () => {
             maxLength={2}
             onChange={(e) => setValue('payDay', e.target.value)}
           />
+          {errors.payDay && (
+            <span className="text-white text-xs">{errors.payDay.message}</span>
+          )}
         </div>
         <div className="flex w-full">
           <button
@@ -98,7 +119,7 @@ const UpdateUser = () => {
             Voltar
           </button>
           <button
-            onClick={() => push('/dashboard')}
+            onClick={handleSubmit(handleUpdateProfile)}
             className="bg-[#092635] flex rounded-md text-white font-bold justify-center items-center p-2 w-[49%] hover:bg-[#005B41]"
           >
             Atualizar

@@ -20,6 +20,7 @@ interface UserContextProps {
   handleLogin: (user: User) => void
   handleLogout: () => void
   getUserStorage: () => Promise<void>
+  handleUpdateToken: (currentToken: string) => void
 }
 const UserContext = createContext<UserContextProps>({} as UserContextProps)
 
@@ -35,6 +36,10 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   const handleLogout = () => {
     setUser({} as User)
     localStorage.clear()
+  }
+
+  const handleUpdateToken = (currentToken: string) => {
+    setToken(currentToken)
   }
 
   const getUserStorage = async () => {
@@ -61,7 +66,14 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <UserContext.Provider
-      value={{ handleLogin, user, handleLogout, getUserStorage, token }}
+      value={{
+        handleLogin,
+        user,
+        handleLogout,
+        getUserStorage,
+        token,
+        handleUpdateToken,
+      }}
     >
       {children}
     </UserContext.Provider>

@@ -10,10 +10,8 @@ export const signUpUseCase = async (
 ) => {
   try {
     const response = await api.post('/user', data)
-    console.log(response.data)
     successCallback && successCallback(response.data)
   } catch (e) {
-    console.log(e)
     failureCallback && failureCallback(e)
   }
 }
@@ -24,12 +22,9 @@ export const updateUserUseCase = async (
   failureCallback?: () => void,
 ) => {
   try {
-    console.log(data)
     const response = await api.put(`/user/${data.id}`, data)
-    console.log('ssk', response.data)
     successCallback && successCallback(response.data)
   } catch (e) {
-    console.log(e)
     failureCallback && failureCallback()
   }
 }

@@ -18,14 +18,11 @@ export default function VideoPlayer({ src, closeCallback }: VideoPlayerProps) {
       video.controls = false
       const defaultOptions = {}
       const isMp4 = src.includes('mp4')
-      console.log(isMp4)
       if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        console.log('aqui')
         // This will run in safari, where HLS is supported natively
         video.src = src
       } else if (Hls.isSupported()) {
         // This will run in all other modern browsers
-        console.log('aqui em bauixp')
 
         const hls = new Hls()
         hls.loadSource(src)
@@ -37,11 +34,7 @@ export default function VideoPlayer({ src, closeCallback }: VideoPlayerProps) {
           video.controls = true
         }
       } else {
-        console.log('aqui no erro')
-
-        console.error(
-          'This is an old browser that does not support MSE https://developer.mozilla.org/en-US/docs/Web/API/Media_Source_Extensions_API',
-        )
+        console.log('aisdi')
       }
     }
   }, [src, videoRef])

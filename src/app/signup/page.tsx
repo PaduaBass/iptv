@@ -85,6 +85,7 @@ const SignUp = () => {
     const input = event.target
     input.value = phoneMask(input.value)
   }
+
   return (
     <main className="bg-[#0F0F0F] flex w-screen h-screen justify-center items-center">
       <div className="flex flex-col justify-center items-center gap-4 w-[50%] max-sm:w-[100%] bg-zinc-900 p-4 rounded-md">

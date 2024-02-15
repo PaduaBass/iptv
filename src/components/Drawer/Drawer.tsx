@@ -30,7 +30,7 @@ const Drawer = ({ isOpen, handleClose }: DrawerProps) => {
       <div className="bg-[#0009] absolute flex w-screen h-screen right-0">
         <div
           ref={dropdownRef}
-          className="flex p-2 flex-col h-full bg-[#0F0F0F] w-[80%] overflow-hidden"
+          className="flex p-2 flex-col h-full bg-[#0F0F0F] max-sm:w-[80%] w-[50%] overflow-hidden"
         >
           <h2 className="text-white text-center mt-4 mb-2">{user.name}</h2>
           <button

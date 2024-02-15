@@ -6,13 +6,10 @@ export const getDataUseCase = async (
   failureCallback?: (e: unknown) => void,
 ) => {
   try {
-    console.log('iniciando')
     const response = await api.get('/data')
-    console.log('opa')
 
     successCallback(response.data.playlist)
   } catch (e) {
-    console.log(e)
     failureCallback && failureCallback(e)
   }
 }

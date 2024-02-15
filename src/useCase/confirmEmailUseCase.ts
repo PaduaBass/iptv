@@ -6,7 +6,7 @@ function gerarNumeroAleatorio() {
 
 export const confirmEmailUseCase = async (
   email: string,
-  successCallback?: () => void,
+  successCallback?: (currentToken: string) => void,
   failureCallback?: () => void,
 ) => {
   try {
@@ -18,7 +18,7 @@ export const confirmEmailUseCase = async (
       token,
       email,
     })
-    successCallback && successCallback()
+    successCallback && successCallback(String(token))
   } catch (e) {
     if (localStorage) {
       await localStorage.removeItem('@token')
