@@ -19,7 +19,7 @@ enum ViewType {
 }
 export default function Dashboard() {
   const { list, groups, selectList } = useContext(DataContext)
-  const [src, setSrc] = useState<string | null>(null)
+  const [item, setItem] = useState<PlaylistItem>({} as PlaylistItem)
   const [selectedGroup, setSelectedGroup] = useState('')
   const [viewType, setViewType] = useState<string>(ViewType.ALL)
   const [searchChannel, setSearchChannel] = useState<string>('')
@@ -44,7 +44,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (!user?.name) {
-      replace('/')
+      // replace('/')
     }
   }, [user])
 
@@ -116,7 +116,7 @@ export default function Dashboard() {
           <div className=" grid grid-cols-4 h-min max-h-[100%] pb-12 max-sm:w-[60%] max-sm:grid-cols-1 w-[80%] gap-1 overflow-y-scroll">
             {list.map((item, index) => (
               <button
-                onClick={() => setSrc(item.url)}
+                onClick={() => setItem(item)}
                 key={index}
                 className="bg-[#092635] h-36 flex flex-col justify-center items-center rounded-md hover:bg-[#005B41]"
               >
@@ -163,7 +163,10 @@ export default function Dashboard() {
         </>
       )} */}
 
-      <VideoPlayer closeCallback={() => setSrc(null)} src={src} />
+      <VideoPlayer
+        closeCallback={() => setItem({} as PlaylistItem)}
+        item={item}
+      />
       <Drawer isOpen={openDrawer} handleClose={() => setOpenDrawer(false)} />
     </main>
   )

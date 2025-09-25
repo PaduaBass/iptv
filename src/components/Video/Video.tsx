@@ -1,56 +1,57 @@
 import { useEffect, useRef } from 'react'
 import Hls from 'hls.js'
-import Plyr from 'plyr'
-import 'plyr/dist/plyr.css'
+// import 'plyr/dist/plyr.css'
 import { DoorClosed, X } from 'lucide-react'
+import { PlaylistItem } from 'iptv-playlist-parser'
 interface VideoPlayerProps {
-  src: string | null
+  item: PlaylistItem
   closeCallback: () => void
 }
-export default function VideoPlayer({ src, closeCallback }: VideoPlayerProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
+export default function VideoPlayer({ item, closeCallback }: VideoPlayerProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (src) {
-      const video = videoRef.current
-      if (!video) return
+    setTimeout(() => {
+      if (videoRef.current) {
 
+      const video = videoRef.current;
       video.controls = false
-      const defaultOptions = {}
-      const isMp4 = src.includes('mp4')
-      if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        // This will run in safari, where HLS is supported natively
-        video.src = src
-      } else if (Hls.isSupported()) {
-        // This will run in all other modern browsers
-
-        const hls = new Hls()
-        hls.loadSource(src)
-
-        //   const player = new Video(video, defaultOptions)
-        hls.attachMedia(video)
-        if (isMp4) {
-          video.src = src
-          video.controls = true
-        }
+      const url = item.url;
+      const isMp4 = item.url.includes('mp4')
+      
+      
+      if (!isMp4 && Hls.isSupported()) {
+        console.log('aqui')
+        const hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(video);
+        
+      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        // Safari toca direto
+        console.log('em baixo')
+        video.src = url;
       } else {
-        console.log('aisdi')
+        video.src = url
+        video.controls = true;
       }
-    }
-  }, [src, videoRef])
 
-  if (src) {
+    }
+    }, 1000)
+  }, [item]);
+
+  if (item.url) {
     return (
       <>
+        <img src={item.tvg.logo} width={50} height={50} />
         <div className="absolute bg-black text-zinc-100 w-full h-full  flex justify-center items-center">
           Carregando...
         </div>
         <video
           className="min-h-full w-full fixed"
           autoPlay
-          controls={true}
+          controls={false}
           ref={videoRef}
-          src={src}
+          src={item.url}
         />
         <button
           onClick={closeCallback}
